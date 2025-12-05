@@ -1,0 +1,43 @@
+<svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="crystalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#60a5fa;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:0.9" />
+    </linearGradient>
+    <filter id="crystalGlow">
+      <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Main crystal -->
+  <polygon points="75,20 100,60 90,120 60,120 50,60" fill="url(#crystalGradient)" filter="url(#crystalGlow)"/>
+  
+  <!-- Facets -->
+  <polygon points="75,20 87.5,40 75,60 62.5,40" fill="#ffffff" opacity="0.4"/>
+  <polygon points="75,60 90,90 82.5,120 67.5,120 60,90" fill="#000000" opacity="0.2"/>
+  
+  <!-- Highlights -->
+  <polygon points="75,25 80,45 75,50 70,45" fill="#ffffff" opacity="0.8"/>
+  <line x1="65" y1="70" x2="70" y2="100" stroke="#ffffff" stroke-width="2" opacity="0.6"/>
+  
+  <!-- Glow effect -->
+  <circle cx="75" cy="60" r="30" fill="url(#crystalGradient)" opacity="0.3">
+    <animate attributeName="opacity" values="0.2;0.4;0.2" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Sparkles -->
+  <circle cx="68" cy="40" r="2" fill="#ffffff">
+    <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="82" cy="50" r="2" fill="#00d4ff">
+    <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+  </circle>
+  <circle cx="75" cy="75" r="2" fill="#a855f7">
+    <animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite" begin="1s"/>
+  </circle>
+</svg>

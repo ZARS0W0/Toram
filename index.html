@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toram Online - Trait Database</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background particles container -->
+    <div id="particles-container"></div>
+    
+    <!-- Three.js Canvas -->
+    <canvas id="three-canvas"></canvas>
+    
+    <!-- Main content -->
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-bg">
+                <img src="images/toram-header.jpg" alt="Toram Online" class="header-image">
+                <div class="header-overlay"></div>
+            </div>
+            <div class="logo-container">
+                <div class="logo-glow"></div>
+                <div class="toram-logo">
+                    <img src="images/toram-steam.jpg" alt="Toram Online Logo" class="toram-logo-img">
+                </div>
+                <h1 class="title">TORAM ONLINE</h1>
+                <p class="subtitle">Drop Item Special Ability Database</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="tier-navigation">
+            <button class="tier-btn active" data-tier="all">
+                <svg class="tier-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>All Traits</span>
+            </button>
+            <button class="tier-btn" data-tier="1">
+                <svg class="tier-icon-svg tier-1-icon" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="#e0e0e0" stroke="#ffffff" stroke-width="2"/>
+                    <text x="12" y="17" text-anchor="middle" fill="#0a0e27" font-size="12" font-weight="bold">I</text>
+                </svg>
+                <span>Tier I</span>
+            </button>
+            <button class="tier-btn" data-tier="2">
+                <svg class="tier-icon-svg tier-2-icon" viewBox="0 0 24 24">
+                    <polygon points="12,2 22,12 12,22 2,12" fill="#4ade80" stroke="#ffffff" stroke-width="2"/>
+                    <text x="12" y="16" text-anchor="middle" fill="#0a0e27" font-size="11" font-weight="bold">II</text>
+                </svg>
+                <span>Tier II</span>
+            </button>
+            <button class="tier-btn" data-tier="3">
+                <svg class="tier-icon-svg tier-3-icon" viewBox="0 0 24 24">
+                    <path d="M12 2 L22 8 L22 16 L12 22 L2 16 L2 8 Z" fill="#3b82f6" stroke="#ffffff" stroke-width="2"/>
+                    <text x="12" y="16" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">III</text>
+                </svg>
+                <span>Tier III</span>
+            </button>
+            <button class="tier-btn" data-tier="4">
+                <svg class="tier-icon-svg tier-4-icon" viewBox="0 0 24 24">
+                    <path d="M12,2 L16,8 L23,9 L17.5,14.5 L19,22 L12,18 L5,22 L6.5,14.5 L1,9 L8,8 Z" fill="#a855f7" stroke="#ffffff" stroke-width="1.5"/>
+                    <text x="12" y="15" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold">IV</text>
+                </svg>
+                <span>Tier IV</span>
+            </button>
+            <button class="tier-btn" data-tier="5">
+                <svg class="tier-icon-svg tier-5-icon" viewBox="0 0 24 24">
+                    <path d="M12,2 L14,8 L20,9 L15,13 L17,20 L12,16 L7,20 L9,13 L4,9 L10,8 Z" fill="#fbbf24" stroke="#ffffff" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="3" fill="#fff" opacity="0.3"/>
+                    <text x="12" y="15" text-anchor="middle" fill="#0a0e27" font-size="9" font-weight="bold">V</text>
+                </svg>
+                <span>Tier V</span>
+            </button>
+            <button class="tier-btn" data-tier="transfer">
+                <svg class="tier-icon-svg" viewBox="0 0 24 24">
+                    <path d="M12,2 L15,8 L22,9 L17,14 L18,21 L12,18 L6,21 L7,14 L2,9 L9,8 Z" fill="url(#diamondGradient)" stroke="#00d4ff" stroke-width="2"/>
+                    <defs>
+                        <linearGradient id="diamondGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <span>Transfer Info</span>
+            </button>
+        </nav>
+
+        <!-- Category Filter -->
+        <nav class="category-navigation">
+            <button class="category-btn active" data-category="all">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+                All Types
+            </button>
+            <button class="category-btn" data-category="stat">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 3v18h18"/>
+                    <path d="M18 17l-5-5-4 4-6-6"/>
+                </svg>
+                Stats
+            </button>
+            <button class="category-btn" data-category="combat">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14.5 2l6 6-8 8-6-6 8-8z"/>
+                    <path d="M10 10l-6 6 2 2 6-6"/>
+                    <circle cx="17" cy="17" r="3"/>
+                </svg>
+                Combat
+            </button>
+            <button class="category-btn" data-category="speed">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+                Speed
+            </button>
+            <button class="category-btn" data-category="regen">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+                Regen
+            </button>
+            <button class="category-btn" data-category="proc">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                Proc
+            </button>
+            <button class="category-btn" data-category="debuff">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M15 9l-6 6M9 9l6 6"/>
+                </svg>
+                Debuff
+            </button>
+            <button class="category-btn" data-category="utility">
+                <svg class="category-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                Utility
+            </button>
+        </nav>
+
+        <!-- Search bar -->
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search traits..." class="search-input">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="m21 21-4.35-4.35"/>
+            </svg>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-number" id="total-traits">0</div>
+                <div class="stat-label">Total Traits</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="active-tier">All</div>
+                <div class="stat-label">Active Filter</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="visible-traits">0</div>
+                <div class="stat-label">Showing</div>
+            </div>
+        </div>
+
+        <!-- Info Panel -->
+        <div id="info-panel" class="info-panel">
+            <h2 class="info-title">
+                <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                    <polyline points="10 9 9 9 8 9"/>
+                </svg>
+                Important Information
+            </h2>
+            <div class="info-content">
+                <div class="info-item">
+                    <span class="info-label">Color Legend:</span>
+                    <span class="info-text">Black = Proven/Acquired from screenshots | <span style="color: #ff4444;">Red = Spoiler (trusted but no screenshots yet)</span></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Traits container -->
+        <div id="traits-container" class="traits-container"></div>
+
+        <!-- Notes Section -->
+        <div id="notes-section" class="notes-section">
+            <h2 class="notes-title">
+                <svg class="notes-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </svg>
+                Important Notes & Mechanics
+            </h2>
+            <div id="notes-container" class="notes-container"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="game-info">
+                <div class="game-logo-footer">
+                    <img src="images/toram-steam.jpg" alt="Toram Online Logo" class="footer-logo-img">
+                </div>
+                <p class="copyright">© ASOBIMO, INC. All rights reserved.</p>
+            </div>
+            <div class="credits">
+                <h3 class="credits-title">
+                    <svg class="credit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                        <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Website Credits
+                </h3>
+                <p class="website-credit"><strong>Website Development & Design:</strong> Zartain</p>
+                <p class="divider">━━━━━━━━━━━━━━━━━━━━━</p>
+                <h3 class="credits-title">
+                    <svg class="credit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>
+                        <path d="M22 12A10 10 0 0 0 12 2v10z"/>
+                    </svg>
+                    Data & Information Credits
+                </h3>
+                <p><strong>Data Source:</strong> Contributors in Phantom's Library Discord Server</p>
+                <p class="small"><strong>Editors:</strong></p>
+                <p class="small">• Player20 (ability list compiling)</p>
+                <p class="small">• K. Seina (more informations, note, FYI, etc)</p>
+                <p class="small">• Cal.s (crosschecking)</p>
+                <p class="small"><strong>Spoiler (Red) Data:</strong> Halo Dragon</p>
+                <p class="divider">━━━━━━━━━━━━━━━━━━━━━</p>
+                <p class="small contributors"><strong>Special Thanks to All Contributors:</strong></p>
+                <p class="small contributors">Cal.s, Vistella (a.k.a That One Monster), K. Seina, Shopify, Butz', Fukuri, ZexTal, face, Vesp, Sorata, Katze, Yonshi, ArcTzy, AzureJay, Wada Tsura, Aki+, Knucx Shil, Seal of Earth, Youmina, Zie, MizuQua, JIANG, S-scream, [SA]-ちゃん, >AntoMay, Shizuku, Ann, Entropy, rockhard rock, Quu, Wada Tsura, Yoroimuri, Jack o L., Lemcke, Far_aja (a.k.a Nyaan), Hyuga8, Direy, Entropy, Solan, Mr. Boitato, Springfield, Michiyose, Dark Mochelo, Fukuri, Mathias Son of Hiira, S o R a, Gin, Sumisoft (墨染凜), Code Red, Player20, Delulu, R-T, UCheetah, Chth0lly, AuliaAbuDzar, Eins Ibanez, Zanikara (C21), Ktnugh online, Atsuki, Cerys, Your Ex, Geraine, Mikakage, Paper, Pucuk, Bolampa, Anesh, Direy, monochlo, Crème Brûlée 🍮, ramenEso, xuη xuη, hatsauce, Leaf Maple, DS, CelesLea, Sirenyte, N, Magier, Kerry, GlucoseXD, ainturtype, ★Star-, Lunaria, Leaf Maple, Innocentia, Torytod, Anyone, 2log, & Xenovia Lucifugus.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p class="loading-text">Loading Toram Database...</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
